@@ -1,0 +1,20 @@
+{
+  "example_group": [
+    {
+      "endpoint": "/users/{id}",
+      "backend": "/api/v1/employee/{id}"
+    },
+    {
+      "endpoint": "/posts/{id}",
+      "backend": "/posts?postId={id}",
+      "input_query_strings": [
+        "items",
+        "page"
+      ],
+      "input_headers": [
+        "User-Agent",
+        "Accept"
+      ]
+    }
+  ]
+}

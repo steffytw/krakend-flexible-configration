@@ -1,0 +1,39 @@
+{
+    "version": 3,
+    "port": 8090,
+    "extra_config": {"security/http":{"allowed_hosts":[],"ssl_certificate":"/opt/rsa.cert","ssl_private_key":"/opt/rsa.key","ssl_proxy_headers":{"X-Forwarded-Proto":"https"}},"telemetry/logging":{"custom_format":"%{message}","format":"custom","level":"INFO","prefix":"[KRAKEND]","stdout":true,"syslog":true}},
+    "host": ["https://dummy.restapiexample.com"],
+    "endpoints": [
+        
+        
+        {
+        "endpoint": "/users/{id}",
+        "backend": [
+            {
+                "url_pattern": "/api/v1/employee/{id}",
+                "extra_config": {
+                    "qos/ratelimit/proxy": {
+    "max_rate": "100",
+    "capacity": "100"
+}
+                }
+            }
+        ]}
+        
+        ,
+        {
+        "endpoint": "/posts/{id}",
+        "backend": [
+            {
+                "url_pattern": "/posts?postId={id}",
+                "extra_config": {
+                    "qos/ratelimit/proxy": {
+    "max_rate": "100",
+    "capacity": "100"
+}
+                }
+            }
+        ]}
+        
+    ]
+}

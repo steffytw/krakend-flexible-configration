@@ -1,0 +1,21 @@
+{
+    "version": 3,
+    "port": {{ .service.port }},
+    "extra_config": {{ marshal .service.extra_config }},
+    "host": {{ marshal .service.default_hosts }},
+    "endpoints": [
+        {{ range $idx, $endpoint := .endpoint.example_group }}
+        {{if $idx}},{{end}}
+        {
+        "endpoint": "{{ $endpoint.endpoint }}",
+        "backend": [
+            {
+                "url_pattern": "{{ $endpoint.backend }}",
+                "extra_config": {
+                    {{ include "rate_limit_backend.tmpl" }}
+                }
+            }
+        ]}
+        {{ end }}
+    ]
+}

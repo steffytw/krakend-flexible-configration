@@ -1,0 +1,24 @@
+{
+  "port": 8090,
+  "default_hosts": [
+    "https://dummy.restapiexample.com"
+  ],
+  "extra_config": {
+    "security/http": {
+      "allowed_hosts": [],
+      "ssl_proxy_headers": {
+        "X-Forwarded-Proto": "https"
+      },
+      "ssl_certificate": "/opt/rsa.cert",
+      "ssl_private_key": "/opt/rsa.key"
+    },
+    "telemetry/logging": {
+      "level": "INFO",
+      "prefix": "[KRAKEND]",
+      "syslog": true,
+      "stdout": true,
+      "format": "custom",
+      "custom_format": "%{message}"
+    }
+  }
+}
