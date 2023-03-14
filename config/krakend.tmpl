@@ -11,6 +11,11 @@
         "backend": [
             {
                 "url_pattern": "{{ $endpoint.backend }}",
+                "input_query_strings": [
+                    {{range $idx, $param := $endpoint.input_query_strings}}
+                    {{if $idx}}, {{end}}
+                    "{{$param}}"
+                    {{end}}],
                 "extra_config": {
                     {{ include "rate_limit_backend.tmpl" }}
                 }
